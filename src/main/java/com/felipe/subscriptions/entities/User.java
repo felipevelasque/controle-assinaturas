@@ -1,4 +1,4 @@
-package entities;
+package com.felipe.subscriptions.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
