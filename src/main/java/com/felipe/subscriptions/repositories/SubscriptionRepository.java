@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-    List<Subscription> findUserIdAndActiveTrue(Long userId);
+    List<Subscription> findByUserIdAndActiveTrue(Long userId);
 
     List<Subscription> findByActiveTrueAndNextBillingDateBetween(LocalDate start, LocalDate end);
 }

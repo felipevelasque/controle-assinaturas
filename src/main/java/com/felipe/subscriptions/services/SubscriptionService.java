@@ -1,5 +1,6 @@
 package com.felipe.subscriptions.services;
 
+
 import com.felipe.subscriptions.entities.BillingCycle;
 import com.felipe.subscriptions.entities.PaymentMethod;
 import com.felipe.subscriptions.entities.PriceChangeHistory;
@@ -8,9 +9,11 @@ import com.felipe.subscriptions.repositories.PaymentMethodRepository;
 import com.felipe.subscriptions.repositories.PriceChangeHistoryRepository;
 import com.felipe.subscriptions.repositories.SubscriptionRepository;
 import com.felipe.subscriptions.repositories.UserRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -55,7 +58,7 @@ public class SubscriptionService {
     }
 
     public BigDecimal monthlySpend(Long userId) {
-        return subscriptionRepository.findUserIdAndActiveTrue(userId).stream()
+        return subscriptionRepository.findByUserIdAndActiveTrue(userId).stream()
                 .map(s -> s.getBillingCycle() == BillingCycle.MONTHLY
                         ? s.getPrice()
                         : s.getPrice().divide(BigDecimal.valueOf(12), 2, RoundingMode.HALF_UP))
@@ -63,7 +66,7 @@ public class SubscriptionService {
     }
 
     public BigDecimal annualSpend(Long userId) {
-        return subscriptionRepository.findUserIdAndActiveTrue(userId).stream()
+        return subscriptionRepository.findByUserIdAndActiveTrue(userId).stream()
                 .map(s -> s.getBillingCycle() == BillingCycle.ANNUAL
                         ? s.getPrice()
                         : s.getPrice().multiply(BigDecimal.valueOf(12)))
@@ -73,6 +76,6 @@ public class SubscriptionService {
     }
 
     public List<Subscription> findByUser(Long userId) {
-        return subscriptionRepository.findUserIdAndActiveTrue(userId);
+        return subscriptionRepository.findByUserIdAndActiveTrue(userId);
     }
 }
