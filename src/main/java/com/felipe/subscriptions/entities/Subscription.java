@@ -3,6 +3,7 @@ package com.felipe.subscriptions.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -22,6 +23,9 @@ public class Subscription {
 
     @Column(length = 80)
     private String planName; //Premium, Individual, etc.
+
+    @Column(nullable = false, precision = 12, scale = 2)
+    private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 16)
