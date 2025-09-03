@@ -1,9 +1,13 @@
-package com.felipe.subscriptions.repositories;
+package com.felipe.subscriptions.services;
 
 import com.felipe.subscriptions.entities.BillingCycle;
 import com.felipe.subscriptions.entities.PaymentMethod;
 import com.felipe.subscriptions.entities.PriceChangeHistory;
 import com.felipe.subscriptions.entities.Subscription;
+import com.felipe.subscriptions.repositories.PaymentMethodRepository;
+import com.felipe.subscriptions.repositories.PriceChangeHistoryRepository;
+import com.felipe.subscriptions.repositories.SubscriptionRepository;
+import com.felipe.subscriptions.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
